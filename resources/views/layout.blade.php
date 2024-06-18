@@ -3,15 +3,12 @@
 	<head>
 		<meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+		<script src="https://cdn.tailwindcss.com"></script>
         <!-- kaas -->
 
-        <title>Laravel</title>
+        <title>Laravel - @yield('title')</title>
 	</head>
 	<body>
-		@section('content')
+		@yield('content')
 	</body>
-	<footer>
-		@include('footer')
-	</footer>
 </html>

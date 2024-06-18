@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BoardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::get('/', [BoardController::class, 'getBoardView']);
+
+Route::post('/board/update', [BoardController::class, 'updateBoard']);
+
+Route::post('/board/delete', [BoardController::class, 'deleteBoard']);

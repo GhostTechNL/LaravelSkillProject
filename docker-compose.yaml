@@ -7,17 +7,25 @@ services:
     volumes:
       - ./:/app
     depends_on:
-      - db
-  db:
-    image: mysql:latest
+      - database
+  database:
+    image: mariadb:11.4
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USERNAME}
       MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mariadb-data:/var/lib/mysql
     ports:
       - "3306:3306"
+    restart: always
   adminer:
     image: adminer
     ports:
       - "8080:8080"
+    depends_on:
+      - database
+volumes:
+  mariadb-data:
+  

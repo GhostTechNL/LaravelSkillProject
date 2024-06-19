@@ -15,15 +15,16 @@
 			<tbody>
 				@foreach($boarditems as $item)
 				<tr>
-					<td class="border border-slate-600">$item->name</td>
-					<td class="border border-slate-600">$item->description</td>
-					<td class="border border-slate-600 text-red-600"><a href="$item->id">X</a></td>
+					<td class="border border-slate-600">{{$item->name}}</td>
+					<td class="border border-slate-600">{{$item->description}}</td>
+					<td class="border border-slate-600 text-red-600"><a href="/board/delete/{{$item->id}}">X</a></td>
 				</tr>
 				@endforeach
 			</tbody>
 		</table>
 	</div>
-	<form method="post" action="" class="block py-5">
+	<form method="post" action="/board/update" class="block py-5">
+		@csrf
 		<input type="input" name="name" placeholder="name..." class="border-solid border-1 border-sky-500">
 		<input type="textarea" name="description" placeholder="description..." class="border-solid border-1 border-sky-500">
 		<button>Send</button>

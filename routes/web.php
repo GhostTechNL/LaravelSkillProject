@@ -18,4 +18,4 @@ Route::get('/', [BoardController::class, 'getBoardView']);
 
 Route::post('/board/update', [BoardController::class, 'updateBoard']);
 
-Route::post('/board/delete', [BoardController::class, 'deleteBoard']);
+Route::get('/board/delete/{id}', [BoardController::class, 'deleteBoardItem']);

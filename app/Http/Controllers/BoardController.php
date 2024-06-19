@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Board;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Http\RedirectResponse;
 
 class BoardController extends Controller
 {
@@ -17,22 +18,20 @@ class BoardController extends Controller
         return view('pages.home', ['boarditems' => $boarditems]);
     }
 
-    public function updateBoard(Request $request)
+    public function updateBoard(Request $request): RedirectResponse
     {
         Board::create([
             'name' => $request->name,
             'description' => $request->description,
         ]);
 
-        return response()
-                ->view('/',[$message => 'updated'])
-                ->withHeaders($headers);
+        return redirect('/');
     }
 
-    public function deleteItem()
+    public function deleteBoardItem(Request $request, int $id): RedirectResponse
     {
-        return response()
-                ->view('/',[$message => 'updated'])
-                ->withHeaders($headers);
+        Board::destroy($id);
+
+        return redirect('/');
     }
 }
